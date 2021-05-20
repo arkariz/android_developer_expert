@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GameUseCase {
     fun getAllGames(): Flow<Resource<List<Game>>>
+    suspend fun setDescGame(gameId: Int): Flow<Game>
     fun getFavoriteGame(): Flow<List<Game>>
-    fun setFavoriteTourismGame(tourism: Game, state: Boolean)
+    fun setFavoriteGame(game: Game, state: Boolean)
 }

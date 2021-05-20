@@ -1,3 +1,4 @@
 rootProject.name = "Capstone Project MADE"
 include ':app'
 include ':core'
+include ':favorite'

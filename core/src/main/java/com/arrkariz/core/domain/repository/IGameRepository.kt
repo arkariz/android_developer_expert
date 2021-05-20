@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface IGameRepository {
     fun getAllGames(): Flow<Resource<List<Game>>>
 
+    suspend fun setDescGame(gameId: Int): Flow<Game>
+
     fun getFavoriteGame(): Flow<List<Game>>
 
     fun setFavoriteGame(game: Game, state: Boolean)

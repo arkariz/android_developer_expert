@@ -15,5 +15,5 @@ interface ApiService {
     suspend fun getGameList(): GameResponse
 
     @GET("games/{id}?key=$token")
-    fun getDetailGame(@Path("id") id: Int): DetailGameResponse
+    suspend fun getDetailGame(@Path("id") id: Int): DetailGameResponse
 }

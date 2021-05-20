@@ -1,5 +1,6 @@
 package com.arrkariz.capstoneprojectmade.di
 
+import com.arrkariz.capstoneprojectmade.ui.detail.DetailGameViewModel
 import com.arrkariz.capstoneprojectmade.ui.home.HomeViewModel
 import com.arrkariz.core.domain.usecase.GameInteractor
 import com.arrkariz.core.domain.usecase.GameUseCase
@@ -12,4 +13,5 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { DetailGameViewModel(get()) }
 }

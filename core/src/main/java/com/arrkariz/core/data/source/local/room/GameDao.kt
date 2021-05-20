@@ -12,6 +12,9 @@ interface GameDao {
     @Query("SELECT * FROM games where isFavorite = 1")
     fun getFavoriteGame(): Flow<List<GameEntity>>
 
+    @Query("SELECT * FROM games where gameId = :gameId")
+    fun getDescGame(gameId: Int): Flow<GameEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertGame(game: List<GameEntity>)
 

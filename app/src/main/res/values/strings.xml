@@ -5,4 +5,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="something_wrong">Something Wrong</string>
+    <string name="Title">Title</string>
+    <string name="Released">Released</string>
+    <string name="Rating">rating</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="title_favorite">Favorite</string>
 </resources>

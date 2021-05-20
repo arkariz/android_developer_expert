@@ -1,5 +1,7 @@
 package com.arrkariz.capstoneprojectmade.ui.home
 
+import android.content.Intent
+import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arrkariz.capstoneprojectmade.R
 import com.arrkariz.capstoneprojectmade.databinding.FragmentHomeBinding
+import com.arrkariz.capstoneprojectmade.ui.detail.DetailGameActivity
 import com.arrkariz.core.data.source.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,11 +35,11 @@ class HomeFragment : Fragment() {
         if (activity != null) {
 
             val homeAdapter = HomeAdapter()
-//            homeAdapter.onItemClick = { selectedData ->
-//                val intent = Intent(activity, DetailTourismActivity::class.java)
-//                intent.putExtra(DetailTourismActivity.EXTRA_DATA, selectedData)
-//                startActivity(intent)
-//            }
+            homeAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailGameActivity::class.java)
+                intent.putExtra(DetailGameActivity.EXTRA_DATA, selectedData)
+                startActivity(intent)
+            }
 
             homeViewModel.game.observe(viewLifecycleOwner, { game ->
                 if (game != null) {
