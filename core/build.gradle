@@ -3,9 +3,10 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.secrets_gradle_plugin' version'0.4'
 }
 
-apply from: '../app/shared_dependencies.gradle'
+apply from: '../shared_dependencies.gradle'
 
 android {
     compileSdkVersion 30
@@ -19,6 +20,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "RAWG_TOKEN", '"9374f43aab22402f8d6684f3dca0b159"'
     }
 
     buildTypes {
@@ -33,8 +36,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility kotlin_version
+        targetCompatibility kotlin_version
     }
     kotlinOptions {
         jvmTarget = '1.8'

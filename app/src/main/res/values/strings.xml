@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Capstone Project MADE</string>
+    <string name="title_home">Home</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="Title">Title</string>
+    <string name="Released">Released</string>
+    <string name="Rating">rating</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="title_favorite">Favorite</string>
 </resources>

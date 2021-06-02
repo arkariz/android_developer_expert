@@ -1,0 +1,13 @@
+package com.arrkariz.core.domain.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Game(
+    val id: Int,
+    val name: String,
+    val released: String,
+    val background_image: String,
+    val rating: Double,
+) : Parcelable
