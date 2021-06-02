@@ -1,17 +1,10 @@
 package com.arrkariz.capstoneprojectmade.ui.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import com.arrkariz.capstoneprojectmade.ui.home.HomeViewModel
 import com.arrkariz.core.data.source.Resource
 import com.arrkariz.core.domain.model.DetailGame
-import com.arrkariz.core.domain.model.Game
 import com.arrkariz.core.domain.usecase.GameInteractor
-import com.arrkariz.core.domain.usecase.GameUseCase
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
