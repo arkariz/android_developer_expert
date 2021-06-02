@@ -5,8 +5,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "games")
-data class GameEntity(
+@Entity(tableName = "detailgame")
+data class DetailGameEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "gameId")
@@ -14,6 +14,9 @@ data class GameEntity(
 
     @ColumnInfo(name = "name")
     var name: String,
+
+    @ColumnInfo(name = "desc")
+    var desc: String,
 
     @ColumnInfo(name = "released")
     var relesead: String,
@@ -23,4 +26,7 @@ data class GameEntity(
 
     @ColumnInfo(name = "rating")
     var rating: Double,
+
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean = false
 )

@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arrkariz.capstoneprojectmade.R
 import com.arrkariz.capstoneprojectmade.databinding.ItemListBinding
-import com.arrkariz.core.domain.model.Game
+import com.arrkariz.core.domain.model.DetailGame
 import com.bumptech.glide.Glide
 
 class FavoriteAdapter :RecyclerView.Adapter<FavoriteAdapter.ListViewHolder>() {
 
-    private var listData = ArrayList<Game>()
-    var onItemClick: ((Game) -> Unit)? = null
+    private var listData = ArrayList<DetailGame>()
+    var onItemClick: ((DetailGame) -> Unit)? = null
 
-    fun setData(newListData: List<Game>?) {
+    fun setData(newListData: List<DetailGame>?) {
         if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
@@ -33,7 +33,7 @@ class FavoriteAdapter :RecyclerView.Adapter<FavoriteAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemListBinding.bind(itemView)
-        fun bind(data: Game) {
+        fun bind(data: DetailGame) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.background_image)

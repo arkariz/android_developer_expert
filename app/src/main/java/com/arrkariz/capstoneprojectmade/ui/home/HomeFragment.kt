@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             val homeAdapter = HomeAdapter()
             homeAdapter.onItemClick = { selectedData ->
                 val intent = Intent(activity, DetailGameActivity::class.java)
-                intent.putExtra(DetailGameActivity.EXTRA_DATA, selectedData)
+                intent.putExtra(DetailGameActivity.EXTRA_DATA, selectedData.id)
                 startActivity(intent)
             }
 

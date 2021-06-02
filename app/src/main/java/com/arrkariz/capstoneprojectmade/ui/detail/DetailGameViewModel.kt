@@ -1,13 +1,16 @@
 package com.arrkariz.capstoneprojectmade.ui.detail
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
+import com.arrkariz.core.domain.model.DetailGame
 import com.arrkariz.core.domain.model.Game
 import com.arrkariz.core.domain.usecase.GameUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class DetailGameViewModel(private val gameUseCase: GameUseCase) : ViewModel() {
-    fun setFavoriteTourism(game: Game, newStatus:Boolean) =
+    fun setFavoriteGame(game: DetailGame, newStatus:Boolean) =
         gameUseCase.setFavoriteGame(game, newStatus)
 
-    suspend fun setDescGame(gameId: Int) = gameUseCase.setDescGame(gameId).asLiveData()
+    fun getDetailGame(gameId: Int) = gameUseCase.getDetailGame(gameId).asLiveData()
 }

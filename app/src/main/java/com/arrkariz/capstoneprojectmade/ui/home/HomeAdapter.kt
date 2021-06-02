@@ -37,6 +37,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.background_image)
+                    .placeholder(itemView.context.getDrawable(R.drawable.ic_baseline_image_24))
                     .into(imgPoster)
                 tvItemTitle.text = data.name
                 tvRating.text = data.rating.toString()
@@ -46,7 +47,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
 
         init {
             binding.root.setOnClickListener {
-                onItemClick?.invoke(listData[adapterPosition])
+                onItemClick?.invoke(listData[absoluteAdapterPosition])
             }
         }
     }

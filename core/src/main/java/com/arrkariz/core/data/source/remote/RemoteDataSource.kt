@@ -29,11 +29,20 @@ class RemoteDataSource(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getDescGame(gameId: Int): Flow<DetailGameResponse> {
+    suspend fun getDescGame(gameId: Int): Flow<ApiResponse<DetailGameResponse>> {
         return flow {
-            val response = apiService.getDetailGame(gameId)
-            if (response.description.isNotEmpty()) {
-                emit(response)
+            try{
+                val response = apiService.getDetailGame(gameId)
+                val dataArray = listOf(response)
+                Log.d("TES REMOTE", dataArray[0].name)
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: java.lang.Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }

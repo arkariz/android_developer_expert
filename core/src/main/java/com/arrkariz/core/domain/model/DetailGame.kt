@@ -5,9 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class DetailGame(
+    val id: Int,
     val name: String,
-    val description: String,
+    var desc: String,
     val released: String,
     val background_image: String,
-    val rating: Int
+    val rating: Double,
+    val isFavorite: Boolean
 ) : Parcelable

@@ -1,5 +1,6 @@
 package com.arrkariz.core.data.source.local
 
+import com.arrkariz.core.data.source.local.entity.DetailGameEntity
 import com.arrkariz.core.data.source.local.entity.GameEntity
 import com.arrkariz.core.data.source.local.room.GameDao
 import kotlinx.coroutines.flow.Flow
@@ -7,21 +8,19 @@ import kotlinx.coroutines.flow.Flow
 class LocalDataSource(private val gameDao: GameDao) {
     fun getAllGames(): Flow<List<GameEntity>> = gameDao.getAllGames()
 
-    fun getDescGame(gameId: Int): Flow<GameEntity> = gameDao.getDescGame(gameId)
+    fun getDetailGame(gameId: Int): Flow<List<DetailGameEntity>> = gameDao.getDetailGame(gameId)
 
-    fun getFavoriteGame(): Flow<List<GameEntity>> = gameDao.getFavoriteGame()
+    fun getFavoriteGame(): Flow<List<DetailGameEntity>> = gameDao.getFavoriteGame()
 
     suspend fun insertGame(gameList: List<GameEntity>) = gameDao.insertGame(gameList)
 
-    fun setFavoriteGame(game: GameEntity, newState: Boolean) {
-        game.isFavorite = newState
-        gameDao.updateFavoriteGame(game)
-    }
+    suspend fun insertDetailGame(detailGame: DetailGameEntity) = gameDao.insertDetailGame(detailGame)
 
-    fun setDescGame(game: GameEntity, desc: String) {
-        val cleanDesc = desc.replace("<p>","").replace("</p>", "")
+    fun setFavoriteGame(game: DetailGameEntity, newState: Boolean) {
+        val cleanDetail = game.desc.replace("<p>","").replace("</p>", "")
             .replace("<br />","")
-        game.desc = cleanDesc
+        game.isFavorite = newState
+        game.desc = cleanDetail
         gameDao.updateFavoriteGame(game)
     }
 }

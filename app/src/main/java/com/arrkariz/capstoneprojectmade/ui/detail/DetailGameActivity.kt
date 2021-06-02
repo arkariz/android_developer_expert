@@ -7,8 +7,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.arrkariz.capstoneprojectmade.R
 import com.arrkariz.capstoneprojectmade.databinding.ActivityDetailGameBinding
+import com.arrkariz.core.data.source.Resource
 import com.arrkariz.core.domain.model.Game
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,34 +28,51 @@ class DetailGameActivity : AppCompatActivity() {
         binding = ActivityDetailGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val gameId = intent.getIntExtra(EXTRA_DATA, 0)
+        binding.apply {
 
-        val detailGame = intent.getParcelableExtra<Game>(EXTRA_DATA)
-        detailGame?.let {
-            binding.apply {
+            progressBar.visibility = View.VISIBLE
+            if (gameId != 0) {
+                detailGameViewModel.getDetailGame(gameId)
+                    .observe(this@DetailGameActivity, { game ->
+                        if (game != null) {
+                            when (game) {
+                                is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                                is Resource.Success -> {
+                                    val input = game.data?.get(0)
 
-                progressBar.visibility = View.VISIBLE
-                lifecycleScope.launch(Dispatchers.Main) {
-                    detailGameViewModel.setDescGame(it.id).observe(this@DetailGameActivity, {
-                        desc.text = it.desc
-                        progressBar.visibility = View.GONE
+                                    title.text = input?.name
+                                    desc.text = input?.desc
+                                    rating.text = input?.rating.toString()
+                                    released.text = input?.released
+
+                                    Glide.with(this@DetailGameActivity)
+                                        .load(input?.background_image)
+                                        .centerCrop()
+                                        .into(poster)
+
+                                    var statusFavorite = input?.isFavorite
+                                    setStatusFavorite(statusFavorite!!)
+                                    binding.fab.setOnClickListener {
+                                        statusFavorite = !statusFavorite!!
+                                        detailGameViewModel.setFavoriteGame(
+                                            input!!,
+                                            statusFavorite!!
+                                        )
+                                        setStatusFavorite(statusFavorite!!)
+                                    }
+
+                                    binding.progressBar.visibility = View.GONE
+                                }
+                                is Resource.Error -> {
+                                    binding.progressBar.visibility = View.GONE
+                                    binding.viewError.root.visibility = View.VISIBLE
+                                    binding.viewError.tvError.text =
+                                        game.message ?: getString(R.string.something_wrong)
+                                }
+                            }
+                        }
                     })
-                }
-
-                title.text = it.name
-                rating.text = it.rating.toString()
-                released.text = it.released
-
-                Glide.with(this@DetailGameActivity)
-                    .load(it.background_image)
-                    .into(poster)
-            }
-
-            var statusFavorite = detailGame.isFavorite
-            setStatusFavorite(statusFavorite)
-            binding.fab.setOnClickListener {
-                statusFavorite = !statusFavorite
-                detailGameViewModel.setFavoriteTourism(detailGame, statusFavorite)
-                setStatusFavorite(statusFavorite)
             }
         }
     }
