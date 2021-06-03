@@ -1,7 +1,6 @@
 package com.arrkariz.capstoneprojectmade.ui.home
 
 import android.content.Intent
-import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

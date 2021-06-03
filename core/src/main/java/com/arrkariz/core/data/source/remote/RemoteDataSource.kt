@@ -4,7 +4,6 @@ import android.util.Log
 import com.arrkariz.core.data.source.remote.network.ApiResponse
 import com.arrkariz.core.data.source.remote.network.ApiService
 import com.arrkariz.core.data.source.remote.response.DetailGameResponse
-import com.arrkariz.core.data.source.remote.response.GameData
 import com.arrkariz.core.data.source.remote.response.GameResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

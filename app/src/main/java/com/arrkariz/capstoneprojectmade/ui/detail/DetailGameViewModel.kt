@@ -1,12 +1,9 @@
 package com.arrkariz.capstoneprojectmade.ui.detail
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.arrkariz.core.domain.model.DetailGame
-import com.arrkariz.core.domain.model.Game
 import com.arrkariz.core.domain.usecase.GameUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class DetailGameViewModel(private val gameUseCase: GameUseCase) : ViewModel() {
     fun setFavoriteGame(game: DetailGame, newStatus:Boolean) =

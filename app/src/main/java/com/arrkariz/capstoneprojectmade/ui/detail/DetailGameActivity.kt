@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.arrkariz.capstoneprojectmade.R
 import com.arrkariz.capstoneprojectmade.databinding.ActivityDetailGameBinding
 import com.arrkariz.core.data.source.Resource
-import com.arrkariz.core.domain.model.Game
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

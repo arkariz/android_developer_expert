@@ -2,7 +2,6 @@ package com.arrkariz.core.data.source.remote.network
 
 import com.arrkariz.core.BuildConfig
 import com.arrkariz.core.data.source.remote.response.DetailGameResponse
-import com.arrkariz.core.data.source.remote.response.GameData
 import com.arrkariz.core.data.source.remote.response.GameResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

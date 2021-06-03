@@ -3,11 +3,13 @@ package com.arrkariz.capstoneprojectmade.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.arrkariz.capstoneprojectmade.R
 import com.arrkariz.capstoneprojectmade.databinding.ItemListBinding
 import com.arrkariz.core.domain.model.Game
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
 
@@ -37,7 +39,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ListViewHolder>() {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.background_image)
-                    .placeholder(itemView.context.getDrawable(R.drawable.ic_baseline_image_24))
+                    .thumbnail(0.5f)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(ContextCompat.getDrawable(itemView.context, R.drawable.ic_baseline_image_24))
                     .into(imgPoster)
                 tvItemTitle.text = data.name
                 tvRating.text = data.rating.toString()
